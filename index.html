@@ -1,177 +1,391 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>21's Salvaje - Tu Personal Trainer</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <title>Tani Tani Traveler - San Pedro de Atacama</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cianLaguna: '#64C9CF',
+                        arenaClara: '#FDE49C',
+                        naranjaSol: '#FFB740',
+                        rojoTierra: '#DF111B',
+                    },
+                    animation: {
+                        'slow-float': 'slow-float 20s ease-in-out infinite',
+                        'fade-in-up': 'fade-in-up 0.8s ease-out forwards',
+                    },
+                    keyframes: {
+                        'slow-float': {
+                            '0%, 100%': { transform: 'scale(1.1) translateY(0)' },
+                            '50%': { transform: 'scale(1.15) translateY(-20px)' },
+                        },
+                        'fade-in-up': {
+                            '0%': { opacity: '0', transform: 'translateY(30px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @keyframes custom-ping {
+            75%, 100% {
+                transform: scale(2);
+                opacity: 0;
+            }
+        }
+        .animate-custom-ping {
+            animation: custom-ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+        }
+    </style>
 </head>
-<body>
+<body class="bg-[#FDE49C] font-sans selection:bg-[#64C9CF] selection:text-white overflow-x-hidden">
 
-    <header class="hero-section">
-        <div class="hero-content">
-            <div class="logo">
-                <img src="gorilla_logo.png" alt="Logo de 21's Salvaje" class="gorilla-logo">
-                <h1>21's Salvaje</h1>
+    <!-- Botón WhatsApp Flotante -->
+    <a href="https://wa.me/56900000000" target="_blank" rel="noopener noreferrer" 
+       class="fixed bottom-8 right-8 z-[100] bg-[#25D366] text-white p-4 rounded-2xl shadow-2xl hover:scale-110 transition-all duration-300 group flex items-center gap-3">
+        <i data-lucide="message-circle" class="w-7 h-7"></i>
+        <span class="font-bold hidden md:block text-sm">¡Chatea con nosotros!</span>
+        <div class="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 rounded-2xl animate-custom-ping scale-75"></div>
+    </a>
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full z-[80] transition-all duration-500 py-6 bg-transparent">
+        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 bg-naranjaSol rounded-xl flex items-center justify-center text-rojoTierra shadow-lg transform -rotate-3 hover:rotate-0 transition-transform">
+                    <i data-lucide="mountain" class="w-7 h-7 stroke-[3]"></i>
+                </div>
+                <div>
+                    <span id="nav-brand-main" class="text-2xl font-black tracking-tighter block leading-none text-white">TANI TANI</span>
+                    <span id="nav-brand-sub" class="text-[10px] font-bold tracking-[0.3em] uppercase text-arenaClara">Traveler Agency</span>
+                </div>
             </div>
-            <h2>Entrenamiento Personalizado y Salvaje</h2>
-            <p>¡Desata tu verdadero potencial con planes de entrenamiento diseñados para ti!</p>
-            <a href="https://wa.me/573001234567" class="whatsapp-btn" target="_blank">Pedir por Whatsapp</a>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex gap-10 items-center font-bold">
+                <a href="#destinos" class="nav-link text-white hover:text-naranjaSol transition-colors relative group">Destinos</a>
+                <a href="#tips" class="nav-link text-white hover:text-naranjaSol transition-colors relative group">Tips</a>
+                <a href="#reseñas" class="nav-link text-white hover:text-naranjaSol transition-colors relative group">Reseñas</a>
+                <a href="https://www.instagram.com/tani.tani.traveller/" target="_blank" 
+                   class="bg-cianLaguna text-white px-6 py-2.5 rounded-xl hover:shadow-cyan-400/40 shadow-lg hover:-translate-y-1 transition-all flex items-center gap-2">
+                    <i data-lucide="instagram" class="w-4 h-4"></i> <span class="text-sm">@tani.tani</span>
+                </a>
+            </div>
+
+            <!-- Mobile Toggle -->
+            <button id="menu-toggle" class="md:hidden text-white">
+                <i data-lucide="menu" id="menu-icon-open" class="w-8 h-8"></i>
+                <i data-lucide="x" id="menu-icon-close" class="w-8 h-8 hidden"></i>
+            </button>
         </div>
-    </header>
+    </nav>
 
-    <main>
-        <section class="info-section">
-            <div class="container">
-                <h2>Nuestros Planes de Entrenamiento</h2>
-                <div class="info-grid">
-                    <div class="info-card fade-in">
-                        <h3>Plan Básico</h3>
-                        <p>Descripción corta del plan básico. Incluye rutinas semanales y asesoramiento general.</p>
-                    </div>
-                    <div class="info-card fade-in">
-                        <h3>Plan Pro</h3>
-                        <p>Descripción del plan intermedio. Rutinas personalizadas, seguimiento de progreso y dieta guiada.</p>
-                    </div>
-                    <div class="info-card fade-in">
-                        <h3>Plan Salvaje</h3>
-                        <p>Nuestro plan más completo. Dieta personalizada, seguimiento 1 a 1, y acceso a entrenamientos exclusivos.</p>
-                    </div>
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="fixed inset-0 z-[70] bg-rojoTierra text-white transition-transform duration-500 translate-x-full md:hidden flex flex-col items-center justify-center gap-8 text-2xl font-black">
+        <a href="#destinos" class="mobile-link">Destinos</a>
+        <a href="#tips" class="mobile-link">Tips</a>
+        <a href="#reseñas" class="mobile-link">Reseñas</a>
+        <a href="https://wa.me/56900000000" class="bg-naranjaSol text-rojoTierra px-8 py-3 rounded-2xl">WhatsApp</a>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="relative h-screen flex items-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&q=80&w=1920" 
+                 class="w-full h-full object-cover brightness-[0.6] scale-110 animate-slow-float" alt="Atacama Panorama">
+            <div class="absolute inset-0 bg-gradient-to-r from-rojoTierra/40 to-transparent"></div>
+        </div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-6 w-full">
+            <div class="max-w-3xl opacity-0 animate-fade-in-up">
+                <h2 class="text-naranjaSol font-black uppercase tracking-[0.4em] mb-4 text-sm">Bienvenido al Desierto Estelar</h2>
+                <h1 class="text-6xl md:text-[110px] font-black text-white leading-[0.9] mb-8 drop-shadow-2xl">
+                    TANI TANI <br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-naranjaSol to-cianLaguna">TRAVELER</span>
+                </h1>
+                <p class="text-white/90 text-xl md:text-2xl mb-12 font-medium max-w-xl leading-relaxed">
+                    Donde la tierra roja de Atacama se funde con el azul profundo de nuestras lagunas.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <button class="bg-naranjaSol text-rojoTierra px-10 py-5 rounded-2xl text-lg font-black hover:bg-white hover:scale-105 transition-all shadow-2xl shadow-naranjaSol/30 uppercase tracking-tighter">
+                        Reservar Aventura
+                    </button>
+                    <button class="bg-transparent border-2 border-white/60 text-white px-10 py-5 rounded-2xl text-lg font-black hover:bg-white/20 transition-all backdrop-blur-md">
+                        Explorar Rutas
+                    </button>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section class="prices-section">
-            <div class="container">
-                <h2>Precios y Descripciones</h2>
-                <div class="price-cards-grid">
-                    <div class="price-card slide-up">
-                        <h3>Plan Básico</h3>
-                        <p class="price">$50/mes</p>
-                        <ul>
-                            <li>Rutinas semanales</li>
-                            <li>Asesoramiento por chat</li>
-                        </ul>
+    <!-- Attractions -->
+    <section id="destinos" class="py-32 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+                <div>
+                    <div class="flex items-center gap-2 mb-4">
+                        <div class="w-12 h-1 bg-cianLaguna"></div>
+                        <span class="text-rojoTierra font-black uppercase tracking-widest text-xs">Atracciones Populares</span>
                     </div>
-                    <div class="price-card slide-up">
-                        <h3>Plan Pro</h3>
-                        <p class="price">$100/mes</p>
-                        <ul>
-                            <li>Rutinas personalizadas</li>
-                            <li>Dieta guiada</li>
-                            <li>Seguimiento de progreso</li>
-                        </ul>
-                    </div>
-                    <div class="price-card slide-up">
-                        <h3>Plan Salvaje</h3>
-                        <p class="price">$200/mes</p>
-                        <ul>
-                            <li>Entrenamiento 1 a 1</li>
-                            <li>Dieta personalizada</li>
-                            <li>Seguimiento exclusivo</li>
-                            <li>Acceso a comunidad</li>
-                        </ul>
-                    </div>
+                    <h3 class="text-4xl md:text-6xl font-black text-rojoTierra">Lo más buscado</h3>
                 </div>
             </div>
-        </section>
 
-        <section class="testimonials-section">
-            <div class="container">
-                <h2>Lo que dicen nuestros clientes</h2>
-                <div class="testimonial-grid">
-                    <div class="testimonial-card fade-in">
-                        <p class="quote">"El plan Salvaje me ha cambiado la vida. He logrado resultados que nunca pensé posibles. ¡Totalmente recomendado!"</p>
-                        <p class="author">- Carlos M.</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="group relative bg-white rounded-[2rem] overflow-hidden shadow-2xl transition-all duration-500 hover:-translate-y-4">
+                    <div class="h-80 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1590522194605-96894c1c9c43?auto=format&fit=crop&q=80&w=800" 
+                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Valle de la Luna">
+                        <div class="absolute top-6 right-6 bg-white/90 backdrop-blur-md text-rojoTierra px-4 py-1.5 rounded-full font-black text-xs uppercase tracking-tighter shadow-xl">Top #1</div>
                     </div>
-                    <div class="testimonial-card fade-in">
-                        <p class="quote">"Entrenar con 21's Salvaje es una experiencia increíble. La atención es personalizada y los resultados se ven muy rápido."</p>
-                        <p class="author">- Ana P.</p>
-                    </div>
-                    <div class="testimonial-card fade-in">
-                        <p class="quote">"He perdido 15 kilos en 3 meses con el Plan Pro. La dieta y las rutinas son súper efectivas."</p>
-                        <p class="author">- Javier L.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="results-section">
-            <div class="container">
-                <h2>Resultados de nuestros clientes</h2>
-                <p>Estas son algunas de las transformaciones que hemos logrado juntos.</p>
-                <div class="results-grid">
-                    <div class="result-card fade-in">
-                        <h3>Cliente 1</h3>
-                        <div class="gallery">
-                            <h4>Antes</h4>
-                            <div class="image-container">
-                                <img src="https://picsum.photos/300/300?random=1" alt="Cliente 1 - Antes 1">
-                                <img src="https://picsum.photos/300/300?random=2" alt="Cliente 1 - Antes 2">
-                            </div>
-                            <h4>Después</h4>
-                            <div class="image-container">
-                                <img src="https://picsum.photos/300/300?random=3" alt="Cliente 1 - Después 1">
-                                <img src="https://picsum.photos/300/300?random=4" alt="Cliente 1 - Después 2">
-                            </div>
+                    <div class="p-8">
+                        <h4 class="text-2xl font-black text-rojoTierra mb-3">Valle de la Luna</h4>
+                        <p class="text-slate-600 mb-6 font-medium leading-relaxed">Un viaje sensorial a través de formaciones de sal y arcilla esculpidas por el viento.</p>
+                        <div class="flex justify-between items-center pt-6 border-t border-slate-100">
+                            <span class="text-cianLaguna font-bold flex items-center gap-1 text-sm"><i data-lucide="map-pin" class="w-4 h-4"></i> San Pedro</span>
+                            <button class="w-12 h-12 bg-naranjaSol rounded-xl flex items-center justify-center text-white hover:bg-cianLaguna transition-colors shadow-lg">
+                                <i data-lucide="chevron-right"></i>
+                            </button>
                         </div>
                     </div>
-                    <div class="result-card fade-in">
-                        <h3>Cliente 2</h3>
-                        <div class="gallery">
-                            <h4>Antes</h4>
-                            <div class="image-container">
-                                <img src="https://picsum.photos/300/300?random=5" alt="Cliente 2 - Antes 1">
-                                <img src="https://picsum.photos/300/300?random=6" alt="Cliente 2 - Antes 2">
-                            </div>
-                            <h4>Después</h4>
-                            <div class="image-container">
-                                <img src="https://picsum.photos/300/300?random=7" alt="Cliente 2 - Después 1">
-                                <img src="https://picsum.photos/300/300?random=8" alt="Cliente 2 - Después 2">
-                                <img src="https://picsum.photos/300/300?random=9" alt="Cliente 2 - Después 3">
-                            </div>
+                </div>
+                <!-- Card 2 -->
+                <div class="group relative bg-white rounded-[2rem] overflow-hidden shadow-2xl transition-all duration-500 hover:-translate-y-4">
+                    <div class="h-80 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1518495973542-4542c06a5843?auto=format&fit=crop&q=80&w=800" 
+                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Lagunas Escondidas">
+                        <div class="absolute top-6 right-6 bg-white/90 backdrop-blur-md text-rojoTierra px-4 py-1.5 rounded-full font-black text-xs uppercase tracking-tighter shadow-xl">Aventura</div>
+                    </div>
+                    <div class="p-8">
+                        <h4 class="text-2xl font-black text-rojoTierra mb-3">Lagunas Escondidas</h4>
+                        <p class="text-slate-600 mb-6 font-medium leading-relaxed">Siete lagunas de color turquesa intenso donde el cuerpo flota naturalmente.</p>
+                        <div class="flex justify-between items-center pt-6 border-t border-slate-100">
+                            <span class="text-cianLaguna font-bold flex items-center gap-1 text-sm"><i data-lucide="map-pin" class="w-4 h-4"></i> Baltinache</span>
+                            <button class="w-12 h-12 bg-naranjaSol rounded-xl flex items-center justify-center text-white hover:bg-cianLaguna transition-colors shadow-lg">
+                                <i data-lucide="chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 3 -->
+                <div class="group relative bg-white rounded-[2rem] overflow-hidden shadow-2xl transition-all duration-500 hover:-translate-y-4">
+                    <div class="h-80 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1506318137071-a8e063b4bc04?auto=format&fit=crop&q=80&w=800" 
+                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Tour Astrofotográfico">
+                        <div class="absolute top-6 right-6 bg-white/90 backdrop-blur-md text-rojoTierra px-4 py-1.5 rounded-full font-black text-xs uppercase tracking-tighter shadow-xl">Estelar</div>
+                    </div>
+                    <div class="p-8">
+                        <h4 class="text-2xl font-black text-rojoTierra mb-3">Tour Astrofotográfico</h4>
+                        <p class="text-slate-600 mb-6 font-medium leading-relaxed">Descubre los secretos del cosmos bajo el cielo más limpio del hemisferio sur.</p>
+                        <div class="flex justify-between items-center pt-6 border-t border-slate-100">
+                            <span class="text-cianLaguna font-bold flex items-center gap-1 text-sm"><i data-lucide="map-pin" class="w-4 h-4"></i> Atacama Sky</span>
+                            <button class="w-12 h-12 bg-naranjaSol rounded-xl flex items-center justify-center text-white hover:bg-cianLaguna transition-colors shadow-lg">
+                                <i data-lucide="chevron-right"></i>
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-    </main>
+    <!-- Tips -->
+    <section id="tips" class="py-32 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-20">
+                <h3 class="text-rojoTierra text-5xl font-black mb-4">Tips para el Viajero</h3>
+                <p class="text-slate-700 font-medium">Prepara tus sentidos para el desierto.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-white">
+                <div class="bg-naranjaSol p-10 rounded-[3rem] shadow-xl transform rotate-1 hover:rotate-0 transition-transform">
+                    <i data-lucide="sun" class="text-rojoTierra w-16 h-16 mb-6"></i>
+                    <h4 class="text-2xl font-black text-rojoTierra mb-4">Protección Extrema</h4>
+                    <p class="font-bold text-rojoTierra/80 leading-relaxed">El sol de Atacama no perdona. Bloqueador y lentes son obligatorios en cada salida.</p>
+                </div>
+                <div class="bg-cianLaguna p-10 rounded-[3rem] shadow-xl transform -rotate-2 hover:rotate-0 transition-transform">
+                    <i data-lucide="waves" class="text-white w-16 h-16 mb-6"></i>
+                    <h4 class="text-2xl font-black text-white mb-4">Hidratación Constante</h4>
+                    <p class="font-bold text-white/90 leading-relaxed">Incluso sin sed, el aire seco deshidrata. Bebe agua mineral frecuentemente.</p>
+                </div>
+                <div class="bg-rojoTierra p-10 rounded-[3rem] shadow-xl hover:scale-105 transition-transform">
+                    <i data-lucide="clock" class="text-naranjaSol w-16 h-16 mb-6"></i>
+                    <h4 class="text-2xl font-black text-white mb-4">Aclimatación</h4>
+                    <p class="font-bold text-white/70 leading-relaxed">La altura requiere respeto. Toma el primer día con calma para aclimatarte.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <footer>
-        <p>&copy; 2025 21's Salvaje. Todos los derechos reservados.</p>
+    <!-- Reviews -->
+    <section id="reseñas" class="py-32 bg-white rounded-t-[5rem]">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-20">
+                <div class="inline-block bg-arenaClara px-6 py-2 rounded-full text-rojoTierra font-black text-sm mb-6 uppercase tracking-widest">Opiniones Reales</div>
+                <h3 class="text-4xl md:text-6xl font-black text-rojoTierra">Nuestra Comunidad</h3>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="border-2 border-slate-100 p-10 rounded-[2.5rem] relative hover:border-cianLaguna transition-colors">
+                    <i data-lucide="quote" class="absolute -top-6 -left-2 text-naranjaSol w-12 h-12 opacity-50 fill-current"></i>
+                    <p class="text-slate-700 font-medium italic text-lg mb-8 leading-relaxed">"Los colores de las lagunas son tal cual los ves en las fotos. ¡Tani Tani hizo todo perfecto!"</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-14 h-14 bg-cianLaguna rounded-2xl flex items-center justify-center text-white font-black text-xl shadow-lg">L</div>
+                        <div>
+                            <h5 class="font-black text-rojoTierra text-lg">Lucía Méndez</h5>
+                            <div class="flex text-naranjaSol">
+                                <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                                <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                                <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                                <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                                <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="border-2 border-slate-100 p-10 rounded-[2.5rem] relative hover:border-cianLaguna transition-colors">
+                    <i data-lucide="quote" class="absolute -top-6 -left-2 text-naranjaSol w-12 h-12 opacity-50 fill-current"></i>
+                    <p class="text-slate-700 font-medium italic text-lg mb-8 leading-relaxed">"Best experience in Chile. The sunrise at the Geysers was unforgettable. 10/10 service."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-14 h-14 bg-cianLaguna rounded-2xl flex items-center justify-center text-white font-black text-xl shadow-lg">K</div>
+                        <div>
+                            <h5 class="font-black text-rojoTierra text-lg">Kevin Brown</h5>
+                            <div class="flex text-naranjaSol">
+                                <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                                <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                                <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                                <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                                <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="border-2 border-slate-100 p-10 rounded-[2.5rem] relative hover:border-cianLaguna transition-colors">
+                    <i data-lucide="quote" class="absolute -top-6 -left-2 text-naranjaSol w-12 h-12 opacity-50 fill-current"></i>
+                    <p class="text-slate-700 font-medium italic text-lg mb-8 leading-relaxed">"Puntualidad y guías que realmente aman lo que hacen. La mejor agencia de San Pedro sin duda."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-14 h-14 bg-cianLaguna rounded-2xl flex items-center justify-center text-white font-black text-xl shadow-lg">A</div>
+                        <div>
+                            <h5 class="font-black text-rojoTierra text-lg">Andrés Silva</h5>
+                            <div class="flex text-naranjaSol">
+                                <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                                <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                                <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                                <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                                <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-rojoTierra text-arenaClara pt-24 pb-12">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-16 mb-20">
+                <div class="md:col-span-2">
+                    <h4 class="text-4xl font-black text-white mb-8">TANI TANI <span class="text-naranjaSol">TRAVELER</span></h4>
+                    <p class="text-lg font-medium opacity-80 max-w-sm mb-10 leading-relaxed">Tu puerta de entrada a los paisajes más asombrosos de Chile. Creamos rutas personalizadas con el sello local.</p>
+                    <div class="flex gap-4">
+                        <a href="https://www.instagram.com/tani.tani.traveller/" target="_blank" class="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center hover:bg-naranjaSol hover:text-rojoTierra transition-all"><i data-lucide="instagram"></i></a>
+                        <a href="https://wa.me/56900000000" target="_blank" class="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center hover:bg-cianLaguna hover:text-white transition-all"><i data-lucide="message-circle"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h5 class="text-white font-black uppercase tracking-widest text-xs mb-8 underline decoration-naranjaSol">Navegación</h5>
+                    <ul class="space-y-4 font-bold">
+                        <li><a href="#destinos" class="hover:text-naranjaSol">Destinos</a></li>
+                        <li><a href="#tips" class="hover:text-naranjaSol">Tips de Viaje</a></li>
+                        <li><a href="#reseñas" class="hover:text-naranjaSol">Reseñas</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="text-white font-black uppercase tracking-widest text-xs mb-8 underline decoration-naranjaSol">Ubicación</h5>
+                    <p class="font-medium text-lg mb-4 italic">San Pedro de Atacama, Chile</p>
+                    <div class="flex items-center gap-2 text-white/50 text-sm font-bold bg-black/10 p-3 rounded-xl border border-white/5">
+                        <i data-lucide="shield-check" class="w-4 h-4"></i>
+                        <span>Certificados SERNATUR</span>
+                    </div>
+                </div>
+            </div>
+            <div class="pt-10 border-t border-white/10 text-center text-[10px] uppercase font-black tracking-[0.2em] opacity-40">
+                © 2025 TANI TANI TRAVELER - DESIERTO DE ATACAMA
+            </div>
+        </div>
     </footer>
 
+    <!-- Scripts de interactividad -->
     <script>
-        // Animaciones al hacer scroll
-        const faders = document.querySelectorAll('.fade-in');
-        const sliders = document.querySelectorAll('.slide-up');
+        // Inicializar iconos
+        lucide.createIcons();
 
-        const appearOptions = {
-            threshold: 0.5,
-            rootMargin: "0px 0px -100px 0px"
-        };
+        // Control del Menú Móvil
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIconOpen = document.getElementById('menu-icon-open');
+        const menuIconClose = document.getElementById('menu-icon-close');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
 
-        const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
-            entries.forEach(entry => {
-                if (!entry.isIntersecting) {
-                    return;
-                } else {
-                    entry.target.classList.add('visible');
-                    appearOnScroll.unobserve(entry.target);
-                }
-            });
-        }, appearOptions);
+        function toggleMenu() {
+            const isOpen = !mobileMenu.classList.contains('translate-x-full');
+            if (isOpen) {
+                mobileMenu.classList.add('translate-x-full');
+                menuIconOpen.classList.remove('hidden');
+                menuIconClose.classList.add('hidden');
+            } else {
+                mobileMenu.classList.remove('translate-x-full');
+                menuIconOpen.classList.add('hidden');
+                menuIconClose.classList.remove('hidden');
+            }
+        }
 
-        faders.forEach(fader => {
-            appearOnScroll.observe(fader);
-        });
+        menuToggle.addEventListener('click', toggleMenu);
+        mobileLinks.forEach(link => link.addEventListener('click', toggleMenu));
 
-        sliders.forEach(slider => {
-            appearOnScroll.observe(slider);
+        // Efecto de Scroll en Navbar
+        const navbar = document.getElementById('navbar');
+        const navBrandMain = document.getElementById('nav-brand-main');
+        const navBrandSub = document.getElementById('nav-brand-sub');
+        const navLinks = document.querySelectorAll('.nav-link');
+        const menuToggleBtn = document.getElementById('menu-toggle');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.remove('bg-transparent', 'py-6');
+                navbar.classList.add('bg-white', 'shadow-xl', 'py-2');
+                
+                navBrandMain.classList.replace('text-white', 'text-rojoTierra');
+                navBrandSub.classList.replace('text-arenaClara', 'text-cianLaguna');
+                menuToggleBtn.classList.replace('text-white', 'text-slate-800');
+                
+                navLinks.forEach(link => {
+                    link.classList.remove('text-white');
+                    link.classList.add('text-slate-800');
+                });
+            } else {
+                navbar.classList.add('bg-transparent', 'py-6');
+                navbar.classList.remove('bg-white', 'shadow-xl', 'py-2');
+                
+                navBrandMain.classList.replace('text-rojoTierra', 'text-white');
+                navBrandSub.classList.replace('text-cianLaguna', 'text-arenaClara');
+                menuToggleBtn.classList.replace('text-slate-800', 'text-white');
+
+                navLinks.forEach(link => {
+                    link.classList.add('text-white');
+                    link.classList.remove('text-slate-800');
+                });
+            }
         });
     </script>
 </body>
