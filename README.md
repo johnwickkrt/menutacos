@@ -1,2 +1,3 @@
-# menutacos
-Menú para restaurante de Tacos al Pastor para san pedro
+# pre-visualizacion de paginas web
+ solo se trabaja con anticipo
+ 
